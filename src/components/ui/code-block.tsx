@@ -5,6 +5,8 @@ import { Check, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 interface CodeBlockProps {
   code: string
@@ -20,6 +22,25 @@ export function CodeBlock({
   showLineNumbers = false,
 }: CodeBlockProps) {
   const [copied, setCopied] = React.useState(false)
+  const [isDark, setIsDark] = React.useState(false)
+
+  React.useEffect(() => {
+    // Check if dark mode is enabled
+    const checkDarkMode = () => {
+      setIsDark(document.documentElement.classList.contains('dark'))
+    }
+    
+    checkDarkMode()
+    
+    // Watch for theme changes
+    const observer = new MutationObserver(checkDarkMode)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    })
+    
+    return () => observer.disconnect()
+  }, [])
 
   const copyToClipboard = async () => {
     await navigator.clipboard.writeText(code)
@@ -28,9 +49,9 @@ export function CodeBlock({
   }
 
   return (
-    <div className="relative w-full rounded-lg border bg-muted/50">
+    <div className="relative w-full rounded-lg border bg-muted/50 overflow-hidden">
       {fileName && (
-        <div className="flex items-center justify-between border-b px-4 py-2">
+        <div className="flex items-center justify-between border-b px-4 py-2 bg-muted">
           <span className="text-sm font-mono text-muted-foreground">
             {fileName}
           </span>
@@ -53,7 +74,7 @@ export function CodeBlock({
           <Button
             variant="ghost"
             size="icon"
-            className="absolute right-2 top-2 h-6 w-6"
+            className="absolute right-2 top-2 h-6 w-6 z-10"
             onClick={copyToClipboard}
           >
             {copied ? (
@@ -63,11 +84,24 @@ export function CodeBlock({
             )}
           </Button>
         )}
-        <pre className="overflow-x-auto p-4">
-          <code className={cn("text-sm", `language-${language}`)}>
-            {code}
-          </code>
-        </pre>
+        <SyntaxHighlighter
+          language={language}
+          style={isDark ? oneDark : oneLight}
+          showLineNumbers={showLineNumbers}
+          customStyle={{
+            margin: 0,
+            padding: '1rem',
+            background: 'transparent',
+            fontSize: '0.875rem',
+          }}
+          codeTagProps={{
+            style: {
+              fontFamily: 'var(--font-geist-mono), ui-monospace, monospace',
+            }
+          }}
+        >
+          {code}
+        </SyntaxHighlighter>
       </div>
     </div>
   )
@@ -86,22 +120,22 @@ export function ComponentPreview({
 }: ComponentPreviewProps) {
   return (
     <Tabs defaultValue="preview" className="relative w-full">
-      <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
+      <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0 h-auto">
         <TabsTrigger
           value="preview"
-          className="relative rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+          className="relative rounded-none border-b-2 border-transparent bg-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
         >
           Preview
         </TabsTrigger>
         <TabsTrigger
           value="code"
-          className="relative rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+          className="relative rounded-none border-b-2 border-transparent bg-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
         >
           Code
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="preview" className="relative rounded-md border mt-2">
-        <div className="flex min-h-[350px] items-center justify-center p-10">
+      <TabsContent value="preview" className="relative rounded-md border mt-2 bg-background">
+        <div className="flex min-h-[350px] items-center justify-center p-10 bg-gradient-to-br from-background to-muted/20">
           {preview}
         </div>
       </TabsContent>
