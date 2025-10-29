@@ -1,7 +1,7 @@
-# 🚀 Blitz UI - Modern Component Library
+# ⚡ Blitz UI - Modern Component Library
 
 <div align="center">
-  <h3>A comprehensive UI component library built with ShadCN UI, Tailwind CSS, and Radix UI</h3>
+  <h3>A fully functional UI component library built with React, TypeScript, Tailwind CSS, and Radix UI</h3>
   
   [![Next.js](https://img.shields.io/badge/Next.js-16.0-black)](https://nextjs.org/)
   [![React](https://img.shields.io/badge/React-19.2-blue)](https://react.dev/)
@@ -14,24 +14,52 @@
 
 ## ✨ Features
 
-- 🎨 **30+ Production-Ready Components** - Buttons, Cards, Dialogs, Forms, and more
+- 🎨 **30+ Production-Ready Components** - All fully functional, no mocks or placeholders
+- 📚 **Complete Documentation** - Live examples, code snippets, and API references
 - 🌓 **Dark Mode Support** - Built-in theme switching with system preference detection
 - ♿ **Fully Accessible** - WAI-ARIA compliant with keyboard navigation
 - 🎯 **TypeScript First** - Complete type safety and IntelliSense support
 - 🎭 **Customizable** - Easy theming through CSS variables and Tailwind
 - 📱 **Responsive** - Mobile-first design that works on all devices
 - ⚡ **Performance Optimized** - Tree-shakeable components with minimal bundle size
-- 🔧 **CLI Tool** - Easy component installation and management
+- 🎬 **Real Examples** - Dashboard, Forms, Auth, Settings pages ready to use
 
 ## 🏗️ Architecture
 
 Built on top of industry-leading tools:
 
-- **[ShadCN UI](https://ui.shadcn.com/)** - Beautiful component primitives
 - **[Radix UI](https://www.radix-ui.com/)** - Unstyled, accessible components
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[Next.js 16](https://nextjs.org/)** - React framework with App Router
 - **[Framer Motion](https://www.framer.com/motion/)** - Animation library
+
+## 🌐 Live Pages
+
+All pages are fully functional with real components and interactions:
+
+### Main Pages
+- **`/`** - Homepage with hero, stats, component preview, and features
+- **`/docs`** - Getting started guide with installation instructions
+- **`/components`** - Component registry organized by categories
+- **`/examples`** - Collection of real-world example templates
+
+### Documentation Pages
+- **`/docs/components/button`** - Complete Button documentation with live examples
+- **`/docs/components/input`** - Input component with all variants and states
+- More component docs available in the `/docs/components/` directory
+
+### Example Templates
+- **`/examples/dashboard`** - Full dashboard with stats, charts, tables
+- **`/examples/forms`** - Contact, profile, and preferences forms
+- **`/examples/auth`** - Login, signup, and password reset pages
+- **`/examples/settings`** - Multi-tab settings page with all preferences
+
+All examples include:
+- ✅ Real working forms with validation
+- ✅ Interactive state management
+- ✅ Loading states and error handling
+- ✅ Responsive design
+- ✅ Dark mode support
 
 ## 📦 Installation
 

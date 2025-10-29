@@ -16,8 +16,8 @@ export function SiteHeader() {
 
   const routes = [
     { href: "/", label: "Home" },
-    { href: "/docs", label: "Documentation" },
     { href: "/components", label: "Components" },
+    { href: "/docs", label: "Documentation" },
     { href: "/examples", label: "Examples" },
   ]
 
